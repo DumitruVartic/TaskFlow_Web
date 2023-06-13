@@ -36,6 +36,16 @@ namespace TF.BusinessLogic
             return _dbcontext.Tasks.ToList();
         }
 
+        public void Add(TaskDbTable task)
+        {
+            if (task != null)
+            {
+                task.Id = Guid.NewGuid();
+                _dbcontext.Tasks.Add(task);
+                _dbcontext.SaveChanges();
+            }
+        }
+
         public void AddOrUpdate(TaskDbTable task)
         {
             if (task != null)

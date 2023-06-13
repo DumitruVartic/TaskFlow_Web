@@ -65,7 +65,7 @@ namespace TF.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _businessLogic.AddOrUpdate(task);
+                _businessLogic.Add(task);
                 return RedirectToAction(nameof(Index));
             }
             return View(task);
