@@ -2,7 +2,7 @@
 
 namespace TF.Models.Entities
 {
-    public class NoteDbModel
+    public class NoteDbTable
     {
         [Key]
         public Guid Id { get; set; }

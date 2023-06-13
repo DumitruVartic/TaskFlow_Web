@@ -1,19 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TF.Models.Entities
+namespace TF.Web.Models
 {
-    public class TaskDbModel
+    public class TaskViewModel
     {
-        [Key]
         public Guid Id { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
         public string? Title { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Deadline { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
         public string? Content { get; set; }
     }
 }

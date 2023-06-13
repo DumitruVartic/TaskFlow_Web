@@ -1,4 +1,11 @@
+using System.Data.Entity;
+using TF.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Create DbContextOptions using the appropriate connection string and provider for Entity Framework 6
+var dbContext = new TfDbContext();
+builder.Services.AddSingleton(dbContext);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

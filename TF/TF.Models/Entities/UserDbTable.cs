@@ -1,15 +1,14 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using static TF.Models.Enums.Role;
 
 namespace TF.Models.Entities
 {
-    internal class UserDbModel
+    internal class UserDbTable
     {
         public Guid Id { get; set; }
         public URoles Role { get; set; } = URoles.user;
-        
+
         [Required(AllowEmptyStrings = false)]
         [StringLength(50, MinimumLength = 3)]
         [DisplayName("Username")]
