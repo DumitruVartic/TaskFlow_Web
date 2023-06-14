@@ -4,19 +4,12 @@ using TF.Web.Models;
 
 namespace TF.Web.Controllers
 {
-    public class TaskController : Controller
+    public class TaskController : TFController
     {
-        protected readonly BusinessLogic.BusinessLogic _businessLogic;
-
-        public TaskController()
-        {
-            _businessLogic = new BusinessLogic.BusinessLogic();
-        }
-
         [Route("Tasks")]
         public IActionResult Index()
         {
-            var tasks = _businessLogic.GetTasks();
+            var tasks = _businessLogic.task.GetTasks();
             List<TaskViewModel> tasksViewModel = new List<TaskViewModel>();
 
             foreach (var task in tasks)
@@ -32,7 +25,7 @@ namespace TF.Web.Controllers
                 tasksViewModel.Add(taskViewModel);
             }
 
-            return View(tasksViewModel); 
+            return View(tasksViewModel);
         }
 
         public IActionResult Details(Guid? id)
@@ -42,7 +35,7 @@ namespace TF.Web.Controllers
                 return NotFound();
             }
 
-            var task = _businessLogic.GetTaskById(id);
+            var task = _businessLogic.task.GetTaskById(id);
             if (task == null)
             {
                 return NotFound();
@@ -50,28 +43,23 @@ namespace TF.Web.Controllers
             return View(task);
         }
 
-        // GET: Movies/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,Title,Deadline,Content")] TaskDbTable task)
         {
             if (ModelState.IsValid)
             {
-                _businessLogic.Add(task);
+                _businessLogic.task.Add(task);
                 return RedirectToAction(nameof(Index));
             }
             return View(task);
         }
 
-        // GET: Movies/Edit/id
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -79,7 +67,7 @@ namespace TF.Web.Controllers
                 return NotFound();
             }
 
-            var task = _businessLogic.GetTaskById(id);
+            var task = _businessLogic.task.GetTaskById(id);
             if (task == null)
             {
                 return NotFound();
@@ -87,7 +75,6 @@ namespace TF.Web.Controllers
             return View(task);
         }
 
-        // POST: Movies/Edit/id
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -101,7 +88,7 @@ namespace TF.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                _businessLogic.AddOrUpdate(task);
+                _businessLogic.task.AddOrUpdate(task);
                 return RedirectToAction(nameof(Index));
             }
             return View(task);
@@ -114,7 +101,7 @@ namespace TF.Web.Controllers
                 return NotFound();
             }
 
-            var task = _businessLogic.GetTaskById(id);
+            var task = _businessLogic.task.GetTaskById(id);
             if (task == null)
             {
                 return NotFound();
@@ -123,12 +110,11 @@ namespace TF.Web.Controllers
             return View(task);
         }
 
-        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(Guid? id)
         {
-            _businessLogic.RemoveTaskbyId(id);
+            _businessLogic.task.RemoveTaskbyId(id);
             return RedirectToAction(nameof(Index));
         }
     }

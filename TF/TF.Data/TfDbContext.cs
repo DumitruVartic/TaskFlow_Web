@@ -10,5 +10,8 @@ namespace TF.Data
         }
 
         public DbSet<Models.Entities.TaskDbTable> Tasks { get; set; }
+        public DbSet<Models.Entities.UserDbTable> Users { get; set; }
+        public DbSet<Models.Entities.UserTaskDbTable> UserTasks { get; set; }
+        public DbSet<Models.Entities.UserNoteDbTable> UserNotes { get; set; }
     }
 }

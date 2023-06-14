@@ -1,6 +1,6 @@
 ﻿namespace TF.Models.Enums
 {
-    class Role
+    public class Role
     {
         public enum URoles
         {

@@ -1,4 +1,3 @@
-using System.Data.Entity;
 using TF.Data;
 
 var builder = WebApplication.CreateBuilder(args);

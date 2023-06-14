@@ -4,8 +4,9 @@ using static TF.Models.Enums.Role;
 
 namespace TF.Models.Entities
 {
-    internal class UserDbTable
+    public class UserDbTable
     {
+        [Key]
         public Guid Id { get; set; }
         public URoles Role { get; set; } = URoles.user;
 
